@@ -24,8 +24,8 @@ B2D_INSTALL_MODE="${B2D_INSTALL_MODE:-full}"
 if [[ "$B2D_INSTALL_MODE" == "full" ]] || [[ "$B2D_INSTALL_MODE" == "vm" ]] ; then
 	# Install prerequisites via choco (virtualbox and vagrant)
 	echo-green "Installing virtualbox and vagrant via choco..."
-	curl -sSL https://raw.githubusercontent.com/blinkreaction/boot2docker-vagrant/${B2D_BRANCH}/scripts/presetup-win.cmd -o $WINDIR/Temp/presetup-win.cmd
-	curl -sSL https://raw.githubusercontent.com/blinkreaction/boot2docker-vagrant/${B2D_BRANCH}/scripts/presetup-win.vbs -o $WINDIR/Temp/presetup-win.vbs
+	curl -sSL https://raw.githubusercontent.com/boosta-ltd/boot2docker-vagrant/${B2D_BRANCH}/scripts/presetup-win.cmd -o $WINDIR/Temp/presetup-win.cmd
+	curl -sSL https://raw.githubusercontent.com/boosta-ltd/boot2docker-vagrant/${B2D_BRANCH}/scripts/presetup-win.vbs -o $WINDIR/Temp/presetup-win.vbs
 	echo-yellow "Setup needs administrator privileges to contiue..."
 	cscript $WINDIR/Temp/presetup-win.vbs
 fi
