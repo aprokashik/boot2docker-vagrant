@@ -30,6 +30,13 @@ Prerequisites are installed using **brew/cask** (brew and cask will be installed
 
     bash <(curl -s https://raw.githubusercontent.com/blinkreaction/boot2docker-vagrant/master/scripts/presetup-mac.sh)
 
+**Ubuntu**
+
+Prerequisites are installed using **apt-get**
+
+    bash <(curl -s https://raw.githubusercontent.com/aprokashik/boot2docker-vagrant/develop/scripts/presetup-ubuntu.sh)
+
+
 **Windows**
 
 **All automated scripts and instructions in this project assume using Babun shell and are not tested with other shells.**
