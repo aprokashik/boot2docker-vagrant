@@ -2,7 +2,7 @@
 @ui = Vagrant::UI::Colored.new
 
 # Install required plugins if not present.
-required_plugins = ["vagrant-triggers", "vagrant-gatling-rsync"]
+required_plugins = ["vagrant-triggers"]
 required_plugins.each do |plugin|
   need_restart = false
   unless Vagrant.has_plugin? plugin
@@ -197,27 +197,7 @@ Vagrant.configure("2") do |config|
     config.gatling.latency = synced_folders['rsync_latency']
     config.gatling.time_format = "%H:%M:%S"
 
-    # Launch gatling-rsync-auto in the background
-    if synced_folders['rsync_auto'] && !is_windows
-      [:up, :reload, :resume].each do |trigger|
-        config.trigger.after trigger do
-          success "Starting background rsync-auto process..."
-          info "Run 'tail -f #{vagrant_root}/rsync.log' to see rsync-auto logs."
-          # Kill the old sync process
-          `kill $(pgrep -f rsync-auto) > /dev/null 2>&1 || true`
-          # Start a new sync process in background
-          `vagrant gatling-rsync-auto >> rsync.log &`
-        end
-      end
-      [:halt, :suspend, :destroy].each do |trigger|
-        config.trigger.before trigger do
-          # Kill rsync-auto process
-          success "Stopping background rsync-auto process..."
-          `kill $(pgrep -f rsync-auto) > /dev/null 2>&1 || true`
-          `rm -f rsync.log`
-        end
-      end
-    end
+
   # vboxsf: reliable, cross-platform and terribly slow performance
   elsif synced_folders['type'] == "vboxsf"
     @ui.warn "WARNING: Using the SLOWEST folder sync option (vboxsf)"
