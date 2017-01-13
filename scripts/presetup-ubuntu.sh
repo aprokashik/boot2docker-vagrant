@@ -20,7 +20,7 @@ B2D_INSTALL_MODE="${B2D_INSTALL_MODE:-full}"
 if [[ "$B2D_INSTALL_MODE" == "full" ]] || [[ "$B2D_INSTALL_MODE" == "vm" ]] ; then
 
     INSTALLED="$(which virtualbox | grep -c virtualbox)"
-
+    sudo apt-get update
     if [ ${INSTALLED} -eq 0 ]; then
         echo "Installing virtualbox"
         sudo apt-get install -y \
